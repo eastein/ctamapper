@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <title>Animated CTA Map</title>
+    <style>
+      body {
+        background-color: #000;
+      }
+      #buffer0, #buffer1 {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    </style>
+    <script>
+      var imageUrl = 'tracker.svg';
+      var updateInterval = 5000; // millis
+      var buffer = 0;
+      function updateImage() {
+        var lastBuffer = document.getElementById('buffer' + buffer);
+        buffer = (buffer + 1) % 2;
+        var nextBuffer = document.getElementById('buffer' + buffer);
+        nextBuffer.src = imageUrl;
+        // When the image has finished loading, switch the buffers over.
+        nextBuffer.onload = function() {
+          lastBuffer.style.display = 'none';
+          nextBuffer.style.display = 'block';
+        };
+        setTimeout(updateImage, updateInterval);
+      }
+      window.onload = updateImage;
+    </script>
+  </head>
+  <body>
+    <img id="buffer0"/>
+    <img id="buffer1"/>
+  </body>
+</html>
