@@ -56,4 +56,5 @@ while True :
 	if os.path.exists(svgfn) :
 		os.unlink(svgfn)
 	os.rename(svgfn + '.incomplete', svgfn)
+	print time.ctime(), ' wrote updated map'
 	time.sleep(6.0)
